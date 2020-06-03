@@ -1,0 +1,20 @@
+version: '3'
+services:
+ flask-backend:
+  image: webapp-flask
+  build:
+   context: ./Flask
+   dockerfile: Dockerfile
+  volumes:
+   - "./Flask:/app"
+  ports:
+   - "5000:5000"
+ angular-frontend:
+   build:
+    context: ./Frontend
+    dockerfile: Dockerfile
+   ports:
+     - "80:4200"
+   volumes:
+     - ./Frontend:/usr/src/app
+   command: yarn run start
